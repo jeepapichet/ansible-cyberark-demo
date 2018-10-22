@@ -1,0 +1,15 @@
+---
+- name: Playbook for verifying filesystem
+  hosts: linux
+  vars:
+  tasks:
+   - name: Verify the filesystems
+     command: df -h
+     register: df
+   - name: print df output in json
+     debug: var=df.stdout_lines
+#   - name: Verify the service status on target servers
+#     service:
+#       name: crond
+#       state: started
+#       enabled: yes

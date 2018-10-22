@@ -1,0 +1,29 @@
+[docker]
+docker.cyberark.local
+
+[okd]
+okd.cyberark.local
+
+[comp]
+comp.cyberark.local
+
+[linux]
+docker.cyberark.local
+okd.cyberark.local
+
+[win]
+comp.cyberark.local
+
+[PSMPTargets]
+docker.cyberark.local
+okd.cyberark.local
+
+[PSMPTargets:vars]
+# Ansible connect to target host via psmp using Vault username ansible and vault password retrieved from conjur
+ansible_connection=ssh
+ansible_ssh_host=psmp.cyberark.local
+ansible_user=ansible@unixadm@{{inventory_hostname}}
+ansible_ssh_pass="{{ lookup('conjur_variable', 'Vault/SyncDemo/CICD-TOOLS/Vault-ansible/password') }}"
+
+[all:vars]
+ansible_connection=ssh

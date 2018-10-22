@@ -1,0 +1,23 @@
+[docker]
+docker.cyberark.local
+
+[okd]
+okd.cyberark.local
+
+[comp]
+comp.cyberark.local
+
+[linux]
+docker.cyberark.local
+okd.cyberark.local
+
+[win]
+comp.cyberark.local
+
+[linux:vars]
+ansible_connection=ssh
+ansible_user="{{ lookup('conjur_variable', 'Vault/SyncDemo/Unix-ADM/{{ inventory_hostname }}/username') }}"
+ansible_ssh_pass="{{ lookup('conjur_variable', 'Vault/SyncDemo/Unix-ADM/{{ inventory_hostname }}/password') }}"
+
+[win:vars]
+ansible_conncetion=winrm
